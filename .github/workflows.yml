@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  Build:
+    name: 'Docker'
+    runs-on: ubuntu-latest
+    env:
+    # Change image name for different service
+      IMAGE_NAME: test
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    # Install gcloud cli
+    - name: Install the gcloud cli
+      uses: google-github-actions/setup-gcloud@v0
+      with:
+        project_id: ${{ secrets.GCP_PROJ_ID }}
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+        export_default_credentials: true
+
+    # Build and push Docker image with tags contains commit SHA and latest
+    - name: Build and push the docker image to artifact registry
+      run: |
+        gcloud auth configure-docker asia-east1-docker.pkg.dev
+        docker build -t asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-image-repo/$IMAGE_NAME:latest -t asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-image-repo/$IMAGE_NAME:$GITHUB_SHA .
+        docker push asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-image-repo/$IMAGE_NAME --all-tags

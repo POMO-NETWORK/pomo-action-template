@@ -35,5 +35,5 @@ jobs:
     - name: Build and push the docker image to artifact registry
       run: |
         gcloud auth configure-docker asia-east1-docker.pkg.dev
-        docker build -t asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-image-repo/$IMAGE_NAME:latest -t asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-image-repo/$IMAGE_NAME:$GITHUB_SHA .
+        docker build -t asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-image-repo/$IMAGE_NAME:latest -t asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-image-repo/$IMAGE_NAME:${GITHUB_SHA::8} .
         docker push asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-image-repo/$IMAGE_NAME --all-tags

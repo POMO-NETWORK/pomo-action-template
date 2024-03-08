@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
     # Change image name for different service
-      IMAGE_NAME: test
+      IMAGE_NAME: ${{ github.event.repository.name }}
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout

@@ -6,11 +6,19 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  # Ignore READNE.md document edit
+  paths-ignore:
+      - '**/README.md'
     
 jobs:
+  Test:
+    name: 'Test'
+    # Test job
+
   Build:
     name: 'Docker'
     runs-on: ubuntu-latest
+    needs: [Test]
     env:
     # Change image name for different service
       IMAGE_NAME: ${{ github.event.repository.name }}

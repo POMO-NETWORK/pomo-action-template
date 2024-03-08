@@ -4,10 +4,13 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
+    # Ignore READNE.md document edit
+    paths-ignore:
+      - '**/README.md'
   pull_request:
     branches: [ "main" ]
-  # Ignore READNE.md document edit
-  paths-ignore:
+    # Ignore READNE.md document edit
+    paths-ignore:
       - '**/README.md'
     
 jobs:

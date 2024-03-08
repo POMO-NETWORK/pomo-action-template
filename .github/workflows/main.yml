@@ -16,7 +16,10 @@ on:
 jobs:
   Test:
     name: 'Test'
-    # Test job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a test command
+        run: echo test
 
   Build:
     name: 'Docker'

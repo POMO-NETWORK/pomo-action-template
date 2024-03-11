@@ -51,4 +51,4 @@ spec:
                   - key: role
                     operator: In
                     values:
-                      - dev
+                      - #dev/stg/prod

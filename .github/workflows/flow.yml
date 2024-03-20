@@ -52,16 +52,17 @@ jobs:
     production:
         name: 'production'
         needs: [production-test]
-        uses: POMO-NETWORK/pomo-action-template/.github/workflows/template/prod.yml@main
+        secrets: inherit
+        uses: POMO-NETWORK/pomo-action-template/.github/workflows/prod.yml@main
     staging:
         name: 'staging'
         needs: [staging-test]
-        uses: POMO-NETWORK/pomo-action-template/.github/workflows/template/stg.yml@main
+        uses: POMO-NETWORK/pomo-action-template/.github/workflows/stg.yml@main
     develop:
         name: 'develop'
         needs: [develop-test]
-        uses: POMO-NETWORK/pomo-action-template/.github/workflows/template/dev.yml@main
+        uses: POMO-NETWORK/pomo-action-template/.github/workflows/dev.yml@main
     feature:
         name: 'feature'
         needs: [feature-test]
-        uses: POMO-NETWORK/pomo-action-template/.github/workflows/template/dev.yml@main
+        uses: POMO-NETWORK/pomo-action-template/.github/workflows/dev.yml@main

@@ -45,7 +45,7 @@ jobs:
     production-build-deploy:
         name: 'production-build-deploy'
         # needs: [production-test]
-        uses: delvinwang/pomo-action-template/.github/workflows/prod.yml@main
+        uses: pomonetwork/pomo-action-template/.github/workflows/prod.yml@main
     # staging-build-deploy:
     #     name: 'staging-build-deploy'
     #     needs: [staging-test]

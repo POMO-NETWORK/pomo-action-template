@@ -44,13 +44,13 @@ jobs:
               run: echo test
     production-build-deploy:
         name: 'production-build-deploy'
-        # needs: [production-test]
-        uses: pomonetwork/pomo-action-template/.github/workflows/prod.yml@main
-    # staging-build-deploy:
-    #     name: 'staging-build-deploy'
-    #     needs: [staging-test]
-    #     uses: delvinwang/pomo-action-template/.github/workflows/stg.yml@main
-    # develop-build-deploy:
-    #     name: 'develop-build-deploy'
-    #     needs: [develop-test]
-    #     uses: delvinwang/pomo-action-template/.github/workflows/dev.yml@main
+        needs: [production-test]
+        uses: POMO-NETWORK/pomo-action-template/.github/workflows/prod.yml@main
+    staging-build-deploy:
+        name: 'staging-build-deploy'
+        needs: [staging-test]
+        uses: POMO-NETWORK/pomo-action-template/.github/workflows/stg.yml@main
+    develop-build-deploy:
+        name: 'develop-build-deploy'
+        needs: [develop-test]
+        uses: POMO-NETWORK/pomo-action-template/.github/workflows/dev.yml@main

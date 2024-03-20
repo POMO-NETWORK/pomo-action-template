@@ -14,8 +14,8 @@ on:
 #       - '**/README.md'
 
 jobs:      
-    feature-build:
-        name: 'feature-build'
+    build:
+        name: 'build'
         runs-on: ubuntu-latest
         env:
         # Change image name for different service

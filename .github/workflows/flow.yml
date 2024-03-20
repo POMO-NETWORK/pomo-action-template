@@ -1,4 +1,4 @@
-name: Workflow
+name: Main CI/CD workflow
 
 on:
   push:
@@ -42,6 +42,13 @@ jobs:
         steps:
             - name: Run a test command
               run: echo test
+    feature-test:
+        if: github.event_name == 'push' && github.ref == 'refs/heads/feature' ||  github.event_name == 'pull_request' && github.ref == 'refs/heads/feature'
+        name: 'feature-test'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Run a test command
+              run: echo test
     production:
         name: 'production'
         needs: [production-test]
@@ -53,4 +60,8 @@ jobs:
     develop:
         name: 'develop'
         needs: [develop-test]
+        uses: POMO-NETWORK/pomo-action-template/.github/workflows/dev.yml@main
+    feature:
+        name: 'feature'
+        needs: [feature-test]
         uses: POMO-NETWORK/pomo-action-template/.github/workflows/dev.yml@main

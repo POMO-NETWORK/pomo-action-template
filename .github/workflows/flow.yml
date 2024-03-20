@@ -28,6 +28,13 @@ jobs:
         steps:
           - name: Run a test command
             run: echo test
+    hotfix-test:
+        if: contains(github.ref, 'hotfix')
+        name: 'hotfix-test'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Run a test command
+              run: echo test
     staging-test:
         if: github.event_name == 'push' && github.ref == 'refs/heads/staging' ||  github.event_name == 'pull_request' && github.ref == 'refs/heads/staging'
         name: 'staging-test'
@@ -43,7 +50,7 @@ jobs:
             - name: Run a test command
               run: echo test
     feature-test:
-        if: github.event_name == 'push' && github.ref == 'refs/heads/feature' ||  github.event_name == 'pull_request' && github.ref == 'refs/heads/feature'
+        if: contains(github.ref, 'feature')
         name: 'feature-test'
         runs-on: ubuntu-latest
         steps:

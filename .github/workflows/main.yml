@@ -79,3 +79,4 @@
 #         sed -i "s|<IMAGE_NAME>|asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-image-repo/${{ github.event.repository.name }}:${ GITHUB_SHA::8 }|g" deployment.yaml
 #         sed -i "s|<REPO_NAME>|${{ github.event.repository.name }}|g" deployment.yaml
 #         kubectl apply -f deployment.yaml
+#

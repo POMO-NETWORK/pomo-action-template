@@ -1,4 +1,4 @@
-name: CI/CD
+name: prod
 
 on:
   workflow_call:

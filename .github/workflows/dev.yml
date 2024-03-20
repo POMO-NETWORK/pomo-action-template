@@ -1,17 +1,17 @@
-name: CI/CD
+name: dev
 
 on:
   workflow_call:
-  push:
-    branches: [ "dev" ]
-    # Ignore READNE.md document edit
-    paths-ignore:
-      - '**/README.md'
-  pull_request:
-    branches: [ "dev" ]
-    # Ignore READNE.md document edit
-    paths-ignore:
-      - '**/README.md'
+#   push:
+#     branches: [ "dev" ]
+#     # Ignore READNE.md document edit
+#     paths-ignore:
+#       - '**/README.md'
+#   pull_request:
+#     branches: [ "dev" ]
+#     # Ignore READNE.md document edit
+#     paths-ignore:
+#       - '**/README.md'
     
 jobs:
     build:

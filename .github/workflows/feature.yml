@@ -2,16 +2,6 @@ name: feature
 
 on:
   workflow_call:
-#   push:
-#     branches: [ "feature*" ]
-#     # Ignore READNE.md document edit
-#     paths-ignore:
-#       - '**/README.md'
-#   pull_request:
-#     branches: [ "feature*" ]
-#     # Ignore READNE.md document edit
-#     paths-ignore:
-#       - '**/README.md'
 
 jobs:      
     build:

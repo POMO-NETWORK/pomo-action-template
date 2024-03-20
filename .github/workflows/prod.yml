@@ -39,35 +39,35 @@ jobs:
             docker build -t asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-repo-prod/$IMAGE_NAME:latest -t asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-repo-prod/$IMAGE_NAME:${GITHUB_SHA::8} .
             docker push asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-repo-prod/$IMAGE_NAME --all-tags
     
-    production-deploy:
-        name: 'production-deploy'
-        needs: [production-build]
-        runs-on: ubuntu-latest
+    # production-deploy:
+    #     name: 'production-deploy'
+    #     needs: [production-build]
+    #     runs-on: ubuntu-latest
         
-        steps:
-        # Checkout the repository to the GitHub Actions runner
-        - name: Checkout
-          uses: actions/checkout@v3
+    #     steps:
+    #     # Checkout the repository to the GitHub Actions runner
+    #     - name: Checkout
+    #       uses: actions/checkout@v3
           
-        # Install the gcloud cli
-        - name: Install the gcloud cli
-          uses: google-github-actions/setup-gcloud@v0
-          with:
-            project_id: ${{ secrets.GCP_PROJ_ID }}
-            service_account_key: ${{ secrets.GCP_SA_KEY }}
-            export_default_credentials: true
+    #     # Install the gcloud cli
+    #     - name: Install the gcloud cli
+    #       uses: google-github-actions/setup-gcloud@v0
+    #       with:
+    #         project_id: ${{ secrets.GCP_PROJ_ID }}
+    #         service_account_key: ${{ secrets.GCP_SA_KEY }}
+    #         export_default_credentials: true
     
-        - name: Install kubectl and connect to GKE cluster
-          env:
-               GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
-          run: |
-            gcloud components install kubectl
-            gcloud container clusters get-credentials k8s-pomonetwork-prod --zone asia-east1-a --project ${{ secrets.GCP_PROJ_ID }}
+    #     - name: Install kubectl and connect to GKE cluster
+    #       env:
+    #            GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+    #       run: |
+    #         gcloud components install kubectl
+    #         gcloud container clusters get-credentials k8s-pomonetwork-prod --zone asia-east1-a --project ${{ secrets.GCP_PROJ_ID }}
     
-        # Use sed command replace deployment file image tag/label info
-        - name: Deploy kubernetes manifest file
-          run: |
-            sed -i "s|<IMAGE_NAME>|asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-repo-prod/${{ github.event.repository.name }}:${ GITHUB_SHA::8 }|g" deployment.yaml
-            sed -i "s|<REPO_NAME>|${{ github.event.repository.name }}|g" deployment.yaml
-            kubectl apply -f deployment.yaml
+    #     # Use sed command replace deployment file image tag/label info
+    #     - name: Deploy kubernetes manifest file
+    #       run: |
+    #         sed -i "s|<IMAGE_NAME>|asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-repo-prod/${{ github.event.repository.name }}:${ GITHUB_SHA::8 }|g" deployment.yaml
+    #         sed -i "s|<REPO_NAME>|${{ github.event.repository.name }}|g" deployment.yaml
+    #         kubectl apply -f deployment.yaml
     

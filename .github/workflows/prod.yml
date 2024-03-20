@@ -5,16 +5,16 @@ on:
     # secrets:
     #     envPAT:
     #       required: true
-  push:
-    branches: [ "main" ]
-    # Ignore READNE.md document edit
-    paths-ignore:
-      - '**/README.md'
-  pull_request:
-    branches: [ "main" ]
-    # Ignore READNE.md document edit
-    paths-ignore:
-      - '**/README.md'
+#   push:
+#     branches: [ "main" ]
+#     # Ignore READNE.md document edit
+#     paths-ignore:
+#       - '**/README.md'
+#   pull_request:
+#     branches: [ "main" ]
+#     # Ignore READNE.md document edit
+#     paths-ignore:
+#       - '**/README.md'
 
 jobs:
     build:

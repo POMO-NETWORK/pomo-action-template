@@ -42,10 +42,10 @@ jobs:
         steps:
             - name: Run a test command
               run: echo test
-    # production-build-deploy:
-    #     name: 'production-build-deploy'
-    #     needs: [production-test]
-    #     uses: delvinwang/pomo-action-template/.github/workflows/prod.yml@main
+    production-build-deploy:
+        name: 'production-build-deploy'
+        # needs: [production-test]
+        uses: delvinwang/pomo-action-template/.github/workflows/prod.yml@main
     # staging-build-deploy:
     #     name: 'staging-build-deploy'
     #     needs: [staging-test]

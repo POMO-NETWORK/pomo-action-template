@@ -68,4 +68,4 @@ jobs:
         name: 'feature'
         needs: [feature-test]
         secrets: inherit
-        uses: POMO-NETWORK/pomo-action-template/.github/workflows/dev.yml@main
+        uses: POMO-NETWORK/pomo-action-template/.github/workflows/feature.yml@main

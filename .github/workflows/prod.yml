@@ -2,9 +2,9 @@ name: CI/CD
 
 on:
   workflow_call:
-    secrets:
-        envPAT:
-          required: true
+    # secrets:
+    #     envPAT:
+    #       required: true
   push:
     branches: [ "main" ]
     # Ignore READNE.md document edit

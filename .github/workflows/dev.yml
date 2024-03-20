@@ -14,8 +14,8 @@ on:
       - '**/README.md'
     
 jobs:
-    develop-build:
-        name: 'develop-build'
+    build:
+        name: 'build'
         runs-on: ubuntu-latest
         env:
         # Change image name for different service
@@ -40,9 +40,9 @@ jobs:
             docker build -t asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-repo-dev/$IMAGE_NAME:latest -t asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-repo-dev/$IMAGE_NAME:${GITHUB_SHA::8} .
             docker push asia-east1-docker.pkg.dev/${{ secrets.GCP_PROJ_ID }}/pomo-repo-dev/$IMAGE_NAME --all-tags
     
-    develop-deploy:
-        name: 'develop-deploy'
-        needs: [develop-build]
+    deploy:
+        name: 'deploy'
+        needs: [build]
         runs-on: ubuntu-latest
         
         steps:

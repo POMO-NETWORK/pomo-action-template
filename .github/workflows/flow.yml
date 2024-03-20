@@ -1,56 +1,56 @@
-name: Workflow
+# name: Workflow
 
-on:
-  push:
-    branches:
-      - main
-      - 'hotfix**'
-      - staging
-      - develop
-      - 'feature**'
-    paths-ignore:
-      - '**/README.md'
-  pull_request:
-    branches:
-      - main
-      - 'hotfix**'
-      - staging
-      - develop
-      - 'feature**'
-    paths-ignore:
-      - '**/README.md'
+# on:
+#   push:
+#     branches:
+#       - main
+#       - 'hotfix**'
+#       - staging
+#       - develop
+#       - 'feature**'
+#     paths-ignore:
+#       - '**/README.md'
+#   pull_request:
+#     branches:
+#       - main
+#       - 'hotfix**'
+#       - staging
+#       - develop
+#       - 'feature**'
+#     paths-ignore:
+#       - '**/README.md'
 
-jobs:
-    production-test:
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main' ||  github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
-        name: 'production-test'
-        runs-on: ubuntu-latest
-        steps:
-          - name: Run a test command
-            run: echo test
-    staging-test:
-        if: github.event_name == 'push' && github.ref == 'refs/heads/staging' ||  github.event_name == 'pull_request' && github.ref == 'refs/heads/staging'
-        name: 'staging-test'
-        runs-on: ubuntu-latest
-        steps:
-            - name: Run a test command
-              run: echo test
-    develop-test:
-        if: github.event_name == 'push' && github.ref == 'refs/heads/develop' ||  github.event_name == 'pull_request' && github.ref == 'refs/heads/develop'
-        name: 'develop-test'
-        runs-on: ubuntu-latest
-        steps:
-            - name: Run a test command
-              run: echo test
-    production:
-        name: 'production'
-        needs: [production-test]
-        uses: POMO-NETWORK/pomo-action-template/.github/workflows/prod.yml@main
-    staging:
-        name: 'staging'
-        needs: [staging-test]
-        uses: POMO-NETWORK/pomo-action-template/.github/workflows/stg.yml@main
-    develop:
-        name: 'develop'
-        needs: [develop-test]
-        uses: POMO-NETWORK/pomo-action-template/.github/workflows/dev.yml@main
+# jobs:
+#     production-test:
+#         if: github.event_name == 'push' && github.ref == 'refs/heads/main' ||  github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
+#         name: 'production-test'
+#         runs-on: ubuntu-latest
+#         steps:
+#           - name: Run a test command
+#             run: echo test
+#     staging-test:
+#         if: github.event_name == 'push' && github.ref == 'refs/heads/staging' ||  github.event_name == 'pull_request' && github.ref == 'refs/heads/staging'
+#         name: 'staging-test'
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Run a test command
+#               run: echo test
+#     develop-test:
+#         if: github.event_name == 'push' && github.ref == 'refs/heads/develop' ||  github.event_name == 'pull_request' && github.ref == 'refs/heads/develop'
+#         name: 'develop-test'
+#         runs-on: ubuntu-latest
+#         steps:
+#             - name: Run a test command
+#               run: echo test
+#     production:
+#         name: 'production'
+#         needs: [production-test]
+#         uses: POMO-NETWORK/pomo-action-template/.github/workflows/prod.yml@main
+#     staging:
+#         name: 'staging'
+#         needs: [staging-test]
+#         uses: POMO-NETWORK/pomo-action-template/.github/workflows/stg.yml@main
+#     develop:
+#         name: 'develop'
+#         needs: [develop-test]
+#         uses: POMO-NETWORK/pomo-action-template/.github/workflows/dev.yml@main

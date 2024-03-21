@@ -5,4 +5,9 @@
 3.Edit "test" jobs for testing, if the job have NOT been edit, the job will just print a simple line of text and pass.
 
 ## Caution
-The workflow have five type of branch, please follow the following format:
+The workflow have five type of branch, please follow the following naming format:
+* production -> production
+* staging -> staging
+* develop -> develop
+* feature -> feature/xxxxx
+* hotfix -> hotfix/xxxxx
